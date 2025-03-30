@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c6htqh58a4vyj"]
 
-[ext_resource type="Script" path="res://assets/sounds/bgm_manager.gd" id="1_0w3qm"]
+[ext_resource type="Script" uid="uid://c7r0tyxg0yd1t" path="res://autoload/bgm_manager.gd" id="1_0w3qm"]
 
 [node name="BGM_Manager" type="Node"]
 process_mode = 3
