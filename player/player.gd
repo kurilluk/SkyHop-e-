@@ -15,11 +15,11 @@ var _selected_block = 6
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $Head
-@onready var raycast = $Head/RayCast3D
+#@onready var raycast = $Head/RayCast3D
 @onready var camera_attributes = $Head/Camera3D.attributes
 @onready var selected_block_texture = $SelectedBlock
-@onready var voxel_world = $"../VoxelWorld"
-@onready var crosshair = $"../PauseMenu/Crosshair"
+#@onready var voxel_world = $"../VoxelWorld"
+#@onready var crosshair = $"../PauseMenu/Crosshair"
 
 
 func _ready():
@@ -33,46 +33,46 @@ func _process(_delta):
 	head.transform.basis = Basis.from_euler(Vector3(_mouse_motion.y * -0.001, 0, 0))
 
 	# Block selection.
-	var ray_position = raycast.get_collision_point()
-	var ray_normal = raycast.get_collision_normal()
-	if Input.is_action_just_pressed(&"pick_block"):
-		# Block picking.
-		var block_global_position = Vector3i((ray_position - ray_normal / 2).floor())
-		_selected_block = voxel_world.get_block_global_position(block_global_position)
-	else:
-		# Block prev/next keys.
-		if Input.is_action_just_pressed(&"prev_block"):
-			_selected_block -= 1
-		if Input.is_action_just_pressed(&"next_block"):
-			_selected_block += 1
-		_selected_block = wrapi(_selected_block, 1, 30)
-	# Set the appropriate texture.
-	var uv = Chunk.calculate_block_uvs(_selected_block)
-	selected_block_texture.texture.region = Rect2(uv[0] * 512, Vector2.ONE * 64)
+	#var ray_position = raycast.get_collision_point()
+	#var ray_normal = raycast.get_collision_normal()
+	#if Input.is_action_just_pressed(&"pick_block"):
+		## Block picking.
+		#var block_global_position = Vector3i((ray_position - ray_normal / 2).floor())
+		#_selected_block = voxel_world.get_block_global_position(block_global_position)
+	#else:
+		## Block prev/next keys.
+		#if Input.is_action_just_pressed(&"prev_block"):
+			#_selected_block -= 1
+		#if Input.is_action_just_pressed(&"next_block"):
+			#_selected_block += 1
+		#_selected_block = wrapi(_selected_block, 1, 30)
+	## Set the appropriate texture.
+	#var uv = Chunk.calculate_block_uvs(_selected_block)
+	#selected_block_texture.texture.region = Rect2(uv[0] * 512, Vector2.ONE * 64)
 
 	# Block breaking/placing.
-	if crosshair.visible and raycast.is_colliding():
-		var breaking = Input.is_action_just_pressed(&"break")
-		var placing = Input.is_action_just_pressed(&"place")
-		# Either both buttons were pressed or neither are, so stop.
-		if breaking == placing:
-			return
-
-		if breaking:
-			var block_global_position = Vector3i((ray_position - ray_normal / 2).floor())
-			voxel_world.set_block_global_position(block_global_position, 0)
-		elif placing:
-			var block_global_position = Vector3i((ray_position + ray_normal / 2).floor())
-			voxel_world.set_block_global_position(block_global_position, _selected_block)
+	#if crosshair.visible and raycast.is_colliding():
+		#var breaking = Input.is_action_just_pressed(&"break")
+		#var placing = Input.is_action_just_pressed(&"place")
+		## Either both buttons were pressed or neither are, so stop.
+		#if breaking == placing:
+			#return
+#
+		#if breaking:
+			#var block_global_position = Vector3i((ray_position - ray_normal / 2).floor())
+			#voxel_world.set_block_global_position(block_global_position, 0)
+		#elif placing:
+			#var block_global_position = Vector3i((ray_position + ray_normal / 2).floor())
+			#voxel_world.set_block_global_position(block_global_position, _selected_block)
 
 
 func _physics_process(delta):
-	camera_attributes.dof_blur_far_enabled = Settings.fog_enabled
-	camera_attributes.dof_blur_far_distance = Settings.fog_distance * 1.5
-	camera_attributes.dof_blur_far_transition = Settings.fog_distance * 0.125
+	#camera_attributes.dof_blur_far_enabled = Settings.fog_enabled
+	#camera_attributes.dof_blur_far_distance = Settings.fog_distance * 1.5
+	#camera_attributes.dof_blur_far_transition = Settings.fog_distance * 0.125
 	# Crouching.
-	var crouching = Input.is_action_pressed(&"crouch")
-	head.transform.origin.y = lerpf(head.transform.origin.y, EYE_HEIGHT_CROUCH if crouching else EYE_HEIGHT_STAND, 16 * delta)
+	#var crouching = Input.is_action_pressed(&"crouch")
+	#head.transform.origin.y = lerpf(head.transform.origin.y, EYE_HEIGHT_CROUCH if crouching else EYE_HEIGHT_STAND, 16 * delta)
 
 	# Keyboard movement.
 	var movement_vec2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -83,8 +83,8 @@ func _physics_process(delta):
 	else:
 		movement *= MOVEMENT_SPEED_AIR
 
-	if crouching:
-		movement *= MOVEMENT_SPEED_CROUCH_MODIFIER
+	#if crouching:
+		#movement *= MOVEMENT_SPEED_CROUCH_MODIFIER
 
 	# Gravity.
 	velocity.y -= gravity * delta
@@ -106,5 +106,5 @@ func _input(event):
 			_mouse_motion += event.relative
 
 
-func chunk_pos():
-	return Vector3i((transform.origin / Chunk.CHUNK_SIZE).floor())
+#func chunk_pos():
+	#return Vector3i((transform.origin / Chunk.CHUNK_SIZE).floor())
