@@ -148,7 +148,8 @@ func _physics_process(delta):
 		velocity.y += MOVEMENT_JETPACK_STRENGTH * delta
 		if velocity.y > MAX_JETPACK_STRENTCH:
 			velocity.y = MAX_JETPACK_STRENTCH
-		%Energy.text = str(round(_energy * 100) / 100)
+		if %Energy:
+			%Energy.text = str(round(_energy * 100) / 100)
 			#_energy.snapped(0.01))
 			
 
