@@ -20,10 +20,15 @@ const BOX_MUSIC = [
 ]
 const NEGATIVE = preload("res://sound/music/positive-negative-sound/NEGATIVE_02.ogg")
 const OUT_OF_FUEL = preload("res://sound/sfx/movement-sounds/OUT_OF_FUEL_01.ogg")
+const JETPACK = preload("res://sound/sfx/movement-sounds/sfx_jetpack.ogg")
 
 func play_background():
 	ambient_player.stream = AMBIENT_LOOP[0]
 	ambient_player.play()
+	
+func play_jetpack(player = hit_player):
+	player.stream = JETPACK
+	player.play()
 
 func stop_all():
 	hit_player.stop()
