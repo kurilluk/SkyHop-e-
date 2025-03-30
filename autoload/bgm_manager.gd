@@ -18,7 +18,7 @@ const BOX_MUSIC = [
 	preload("res://sound/music/box-notes-better/PURPLE_04.ogg"),
 	preload("res://sound/music/box-notes-better/PINK_04.ogg"),
 ]
-
+const NEGATIVE = preload("res://sound/music/positive-negative-sound/NEGATIVE_02.ogg")
 
 func play_background():
 	ambient_player.stream = AMBIENT_LOOP[0]
