@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cways0xos4mdf"]
+[gd_scene load_steps=9 format=3 uid="uid://cways0xos4mdf"]
 
 [ext_resource type="PackedScene" uid="uid://8i6bu0hjfb3u" path="res://sky/box.tscn" id="1_h66ql"]
 [ext_resource type="PackedScene" uid="uid://1s4asqpay67m" path="res://player/player.tscn" id="2_0ah7g"]
 [ext_resource type="PackedScene" uid="uid://dk8arl1if3lyr" path="res://menu/ingame/pause_menu.tscn" id="2_kkw2q"]
+[ext_resource type="Script" uid="uid://kmavj6vpufr5" path="res://sky/boxes.gd" id="3_bc1vd"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0ah7g"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kkw2q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kkw2q"]
 sky_top_color = Color(0.32549, 0.878431, 1, 1)
@@ -29,17 +30,23 @@ fog_height_density = 0.02
 [node name="Sky" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_0ah7g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.62375, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 98.3428, 0)
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_kkw2q")]
 
-[node name="Box" parent="." instance=ExtResource("1_h66ql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.66548, 0)
+[node name="Ground" type="StaticBody3D" parent="."]
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("WorldBoundaryShape3D_0ah7g")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_kkw2q")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bc1vd")
+
+[node name="Boxes" type="Node3D" parent="."]
+script = ExtResource("3_bc1vd")
+
+[node name="Box" parent="Boxes" instance=ExtResource("1_h66ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 86.6136, 0)
+
+[node name="Box2" parent="Boxes" instance=ExtResource("1_h66ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 83.656, 1.69005)
