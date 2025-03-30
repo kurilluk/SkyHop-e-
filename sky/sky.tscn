@@ -1,14 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://cways0xos4mdf"]
+[gd_scene load_steps=8 format=3 uid="uid://cways0xos4mdf"]
 
 [ext_resource type="PackedScene" uid="uid://8i6bu0hjfb3u" path="res://sky/box.tscn" id="1_h66ql"]
+[ext_resource type="PackedScene" uid="uid://1s4asqpay67m" path="res://player/player.tscn" id="2_0ah7g"]
+[ext_resource type="PackedScene" uid="uid://dk8arl1if3lyr" path="res://menu/ingame/pause_menu.tscn" id="2_kkw2q"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0ah7g"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ah7g"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_heg3k"]
+sky_material = SubResource("ProceduralSkyMaterial_0ah7g")
+
+[sub_resource type="Environment" id="Environment_kkw2q"]
+background_mode = 2
+background_energy_multiplier = 5.0
+sky = SubResource("Sky_heg3k")
+tonemap_mode = 3
+fog_light_color = Color(0.988308, 0.989529, 0.991451, 1)
+fog_sky_affect = 0.75
+fog_height_density = -0.5
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_length = 540.76
+volumetric_fog_detail_spread = 6.0
+volumetric_fog_ambient_inject = 1.41
+
 [node name="Sky" type="Node3D"]
 
+[node name="Player" parent="." instance=ExtResource("2_0ah7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.62375, 0)
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_kkw2q")]
+
 [node name="Box" parent="." instance=ExtResource("1_h66ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.66548, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("WorldBoundaryShape3D_0ah7g")
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kkw2q")
+
+[node name="Sun" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 0, 0)
+visible = false
+shadow_enabled = true
+shadow_bias = 0.04
