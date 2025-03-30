@@ -14,7 +14,7 @@ albedo_color = Color(0, 0.533333, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jjc38"]
 material = SubResource("ORMMaterial3D_7siya")
-size = Vector3(100, 1, 100)
+size = Vector3(300, 1, 300)
 
 [node name="Sky" type="Node3D"]
 script = ExtResource("1_lslv2")

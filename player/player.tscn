@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dhmb4d4sdsfff" path="res://world/textures/texture_sheet_colors.png" id="2_waeq6"]
 
 [sub_resource type="CylinderShape3D" id="1"]
+margin = 0.0
 height = 1.75
-radius = 0.45
+radius = 0.35
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_jyixh"]
 
