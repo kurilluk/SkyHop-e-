@@ -9,6 +9,10 @@ extends Control
 
 var _is_paused = false
 
+func _onready():
+	pause.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _process(_delta):
 	if Input.is_action_just_pressed(&"pause"):
 		_is_paused = not _is_paused

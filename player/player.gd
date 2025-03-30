@@ -40,6 +40,7 @@ func set_next_color():
 	next_color.color = BoxManager.COLORS.values()[id]
 
 func score_count(type):
+	print(_next_type + " vs " + type)
 	if _next_type == type:
 		_score += 10
 		print("+10")
@@ -48,7 +49,7 @@ func score_count(type):
 		print("-5")
 
 func _on_box_interact(type):
-	print(type)
+	#print(type)
 	score_count(type)
 	print(_score)
 	score.text = str(_score)
