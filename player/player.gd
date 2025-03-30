@@ -4,10 +4,11 @@ const EYE_HEIGHT_STAND = 1.6
 const EYE_HEIGHT_CROUCH = 1.4
 
 const MOVEMENT_SPEED_GROUND = 0.6
-const MOVEMENT_SPEED_AIR = 0.11
+const MOVEMENT_SPEED_AIR = 0.11 #0.11
 const MOVEMENT_SPEED_CROUCH_MODIFIER = 0.5
 const MOVEMENT_FRICTION_GROUND = 0.9
 const MOVEMENT_FRICTION_AIR = 0.98
+const MOVEMENT_JETPACK_STRENGTH = 35.0
 
 var _mouse_motion = Vector2()
 var _selected_block = 6
@@ -20,6 +21,7 @@ var _selected_block = 6
 @onready var selected_block_texture = $SelectedBlock
 #@onready var voxel_world = $"../VoxelWorld"
 #@onready var crosshair = $"../PauseMenu/Crosshair"
+
 
 
 func _ready():
@@ -97,7 +99,10 @@ func _physics_process(delta):
 
 	# Jumping, applied next frame.
 	if is_on_floor() and Input.is_action_pressed(&"jump"):
-		velocity.y = 7.5
+		velocity.y = 7.5 # 7.5
+	
+	if Input.is_action_pressed(&"crouch"):
+		velocity.y += MOVEMENT_JETPACK_STRENGTH * delta
 
 
 func _input(event):
