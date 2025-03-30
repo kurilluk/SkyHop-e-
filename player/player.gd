@@ -96,13 +96,21 @@ func _physics_process(delta):
 	velocity.x *= MOVEMENT_FRICTION_GROUND if is_on_floor() else MOVEMENT_FRICTION_AIR
 	velocity.z *= MOVEMENT_FRICTION_GROUND if is_on_floor() else MOVEMENT_FRICTION_AIR
 	move_and_slide()
+	
+	var collision = get_last_slide_collision()
+	if collision:
+		print("Collided with: ", collision.get_collider().name)
 
 	# Jumping, applied next frame.
 	if is_on_floor() and Input.is_action_pressed(&"jump"):
 		velocity.y = 7.5 # 7.5
 	
 	if Input.is_action_pressed(&"crouch"):
+		if velocity.y < 0:
+			velocity.y = 0
 		velocity.y += MOVEMENT_JETPACK_STRENGTH * delta
+		if velocity.y > 10:
+			velocity.y = 10
 
 
 func _input(event):

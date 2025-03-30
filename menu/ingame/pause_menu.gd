@@ -25,6 +25,7 @@ func _on_Resume_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#crosshair.visible = true
 	pause.visible = false
+	_is_paused = false
 
 
 #func _on_Options_pressed():
