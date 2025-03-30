@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://cways0xos4mdf"]
+[gd_scene load_steps=3 format=3 uid="uid://cways0xos4mdf"]
+
+[ext_resource type="PackedScene" uid="uid://8i6bu0hjfb3u" path="res://sky/box.tscn" id="1_h66ql"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0ah7g"]
 
 [node name="Sky" type="Node3D"]
+
+[node name="Box" parent="." instance=ExtResource("1_h66ql")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("WorldBoundaryShape3D_0ah7g")
