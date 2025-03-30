@@ -20,6 +20,7 @@ func generate_boxes():
 				if randf() < RANDOM_BLOCK_PROBABILITY:
 					var box = BOX.instantiate()
 					box.position = vec
+					box.set_type(randi() % 7)
 					boxes.add_child(box)
 					#random_data[vec] = 5
 					#randi() % 29 + 1

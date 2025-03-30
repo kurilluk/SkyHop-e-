@@ -20,6 +20,7 @@ config/icon="res://icon.webp"
 
 Settings="*res://settings.gd"
 SignalManager="*res://autoload/signal_manager.gd"
+BoxManager="*res://autoload/box_manager.gd"
 
 [display]
 

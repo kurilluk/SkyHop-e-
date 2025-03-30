@@ -1,11 +1,11 @@
 @tool
 extends Node
 
-const ROUNDS : int = 15
-const INITIAL_MONEY : int = 1500
-
-const PROJECT_MIN_PROFIT: float = 1.2
-const PROJECT_MAX_PROFIT: float = 1.8
+#const ROUNDS : int = 15
+#const INITIAL_MONEY : int = 1500
+#
+#const PROJECT_MIN_PROFIT: float = 1.2
+#const PROJECT_MAX_PROFIT: float = 1.8
 
 enum BOX_TYPES {
 	RED = 0,
@@ -34,10 +34,10 @@ const COLORS = {
 	BOX_TYPES.PINK : Color("FF03F2")
 }
 
-const _price_factor: int = 20
-const _external_multiplier = 1.3
-const _basic_price: int = 100
+#const _price_factor: int = 20
+#const _external_multiplier = 1.3
+#const _basic_price: int = 100
 
-func get_price(level:int, external: bool = false)-> int:
-	var factor = _price_factor * _external_multiplier if external else _price_factor
-	return _basic_price + factor * level
+#func get_price(level:int, external: bool = false)-> int:
+	#var factor = _price_factor * _external_multiplier if external else _price_factor
+	#return _basic_price + factor * level
