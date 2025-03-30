@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://1s4asqpay67m"]
 
 [ext_resource type="Script" uid="uid://dp7wvhg4tafqi" path="res://player/player.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://do57nb1cglw2b" path="res://world/textures/texture_sheet_colors.png" id="2_waeq6"]
+[ext_resource type="Texture2D" uid="uid://dhmb4d4sdsfff" path="res://world/textures/texture_sheet_colors.png" id="2_waeq6"]
 
 [sub_resource type="CylinderShape3D" id="1"]
 height = 1.75
-radius = 0.25
+radius = 0.45
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_jyixh"]
 
@@ -22,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
 shape = SubResource("1")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747999, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.747999, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 attributes = SubResource("CameraAttributesPractical_jyixh")
@@ -32,18 +32,23 @@ far = 1000.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 visible = false
+enabled = false
+exclude_parent = false
 target_position = Vector3(0, 0, -4)
 
 [node name="SelectedBlock" type="TextureRect" parent="."]
 texture_filter = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 27.0
-offset_top = -876.0
-offset_right = 155.0
-offset_bottom = -748.0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -16.0
+offset_right = -32.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 texture = SubResource("2")

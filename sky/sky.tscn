@@ -20,7 +20,6 @@ size = Vector3(100, 1, 100)
 script = ExtResource("1_lslv2")
 
 [node name="Player" parent="." instance=ExtResource("2_0ah7g")]
-transform = Transform3D(-0.592098, 0, 0.805866, 0, 1, 0, -0.805866, 0, -0.592098, -2.89062, 98.3428, 1.16756)
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_kkw2q")]
 

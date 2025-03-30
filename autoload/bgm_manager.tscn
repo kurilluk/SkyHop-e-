@@ -7,8 +7,6 @@ process_mode = 3
 script = ExtResource("1_0w3qm")
 
 [node name="HIT_Player" type="AudioStreamPlayer" parent="."]
-bus = &"BGM"
 
 [node name="Ambient_Player" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
-bus = &"AMB"

@@ -1,14 +1,14 @@
 extends CharacterBody3D
 
-const EYE_HEIGHT_STAND = 1.6
-const EYE_HEIGHT_CROUCH = 1.4
+#const EYE_HEIGHT_STAND = 1.6
+#const EYE_HEIGHT_CROUCH = 1.4
 
 const MOVEMENT_SPEED_GROUND = 0.6
 const MOVEMENT_SPEED_AIR = 0.11 #0.11
 const MOVEMENT_SPEED_CROUCH_MODIFIER = 0.5
 const MOVEMENT_FRICTION_GROUND = 0.9
 const MOVEMENT_FRICTION_AIR = 0.98
-const MOVEMENT_JETPACK_STRENGTH = 35.0
+const MOVEMENT_JETPACK_STRENGTH = 15.0
 const MAX_JETPACK_STRENTCH = 10
 
 var _mouse_motion = Vector2()
@@ -90,7 +90,9 @@ func _physics_process(delta):
 		#movement *= MOVEMENT_SPEED_CROUCH_MODIFIER
 
 	# Gravity.
-	velocity.y -= gravity * delta
+	velocity.y -= gravity/2 * delta
+	if velocity.y < -10:
+		velocity.y = -10
 
 	velocity += Vector3(movement.x, 0, movement.z)
 	# Apply horizontal friction.
@@ -104,7 +106,7 @@ func _physics_process(delta):
 
 	# Jumping, applied next frame.
 	if is_on_floor() and Input.is_action_pressed(&"jump"):
-		velocity.y = 7.5 # 7.5
+		velocity.y = 5 # 7.5
 	
 	if Input.is_action_pressed(&"crouch"):
 		if velocity.y < 0:
