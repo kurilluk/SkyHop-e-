@@ -32,16 +32,17 @@ func stop_all():
 func stop_box():
 	hit_player.stop()
 	
-func play_box(type):
+func play_box(type, player = hit_player):
 	if type == BoxManager.BOX_TYPES.keys()[0]: #RED
-		hit_player.stream = BOX_MUSIC[0]
+		player.stream = BOX_MUSIC[0]
 	elif type == BoxManager.BOX_TYPES.keys()[2]: #GREEN:
-		hit_player.stream = BOX_MUSIC[1]
+		player.stream = BOX_MUSIC[1]
 	elif type == BoxManager.BOX_TYPES.keys()[4]: #BLUE
-		hit_player.stream = BOX_MUSIC[2]
+		player.stream = BOX_MUSIC[2]
 	else:
-		hit_player.stop()
-	hit_player.play()
+		player.stream = BOX_MUSIC[2]
+	print(player.stream)
+	player.play()
 	
 
 #func play_initial_ambient_loop_only(loop: AudioStreamPlayer):

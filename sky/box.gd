@@ -41,12 +41,13 @@ func _on_body_entered(body):
 		return
 		
 	if body.is_in_group("player"):  # Uisti sa, že Player je v skupine "player"
-		var player = body as CharacterBody3D
-		if player and player.is_on_floor_only():
+		#var player = body as CharacterBody3D
+		#if player and player.is_on_floor_only():
 			#print("on the floor")
 			#print("Hráč vstúpil na: ", _type)
-			SignalManager.on_box_entered.emit(_type)
-			_active = false  # Pošleme signál s menom boxu
-			await get_tree().create_timer(3).timeout
-			queue_free()
-			BgmManager.stop_box()
+		SignalManager.on_box_entered.emit(_type)
+		_active = false  # uz znovy neaktivujes
+		BgmManager.play_box(_type,$Player3D)
+		await get_tree().create_timer(3).timeout
+		queue_free()
+		BgmManager.stop_box()

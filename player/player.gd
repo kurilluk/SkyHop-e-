@@ -31,7 +31,7 @@ func _ready():
 
 func _on_box_interact(type):
 	print(type)
-	BgmManager.play_box(type)
+	#BgmManager.play_box(type)
 	#pass
 
 func _process(_delta):
