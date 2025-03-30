@@ -31,7 +31,8 @@ func set_color(type: int):
 		box_mesh.set_surface_override_material(0, new_material) # Aplikuje materiál na mesh
 
 func _on_body_entered(body):
-	print(body)
+	#print(body)
 	if body.is_in_group("player"):  # Uisti sa, že Player je v skupine "player"
-		print("Hráč vstúpil na: ", _type)
+		#TODO ...body.is_on_ground
+		#print("Hráč vstúpil na: ", _type)
 		SignalManager.on_box_entered.emit(_type)  # Pošleme signál s menom boxu

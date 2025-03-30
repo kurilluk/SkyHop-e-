@@ -27,7 +27,12 @@ var _selected_block = 6
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	SignalManager.on_box_entered.connect(_on_box_interact)
 
+func _on_box_interact(type):
+	print(type)
+	BgmManager.play_box(type)
+	#pass
 
 func _process(_delta):
 	# Mouse movement.

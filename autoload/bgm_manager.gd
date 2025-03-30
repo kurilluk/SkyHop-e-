@@ -24,9 +24,20 @@ func play_next_phase():
 	ambient_player.stream = AMBIENT_LOOP[_phase]
 	ambient_player.play()
 
-func stop():
+func stop_all():
 	hit_player.stop()
 	ambient_player.stop()
+	
+func stop_box():
+	hit_player.stop()
+	
+func play_box(type):
+	if type == BoxManager.BOX_TYPES.keys()[0]: #RED
+		hit_player.stream = BOX_MUSIC[0]
+	else:
+		hit_player.stream = BOX_MUSIC[1]
+	hit_player.play()
+	
 
 #func play_initial_ambient_loop_only(loop: AudioStreamPlayer):
 	#loop.stop()
