@@ -34,6 +34,7 @@ shape = SubResource("WorldBoundaryShape3D_kkw2q")
 mesh = SubResource("BoxMesh_jjc38")
 
 [node name="Boxes_manual" type="Node3D" parent="."]
+visible = false
 script = ExtResource("3_bc1vd")
 
 [node name="Box" parent="Boxes_manual" instance=ExtResource("1_h66ql")]
