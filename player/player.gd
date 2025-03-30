@@ -9,6 +9,7 @@ const MOVEMENT_SPEED_CROUCH_MODIFIER = 0.5
 const MOVEMENT_FRICTION_GROUND = 0.9
 const MOVEMENT_FRICTION_AIR = 0.98
 const MOVEMENT_JETPACK_STRENGTH = 35.0
+const MAX_JETPACK_STRENTCH = 10
 
 var _mouse_motion = Vector2()
 var _selected_block = 6
@@ -109,8 +110,8 @@ func _physics_process(delta):
 		if velocity.y < 0:
 			velocity.y = 0
 		velocity.y += MOVEMENT_JETPACK_STRENGTH * delta
-		if velocity.y > 10:
-			velocity.y = 10
+		if velocity.y > MAX_JETPACK_STRENTCH:
+			velocity.y = MAX_JETPACK_STRENTCH
 
 
 func _input(event):
