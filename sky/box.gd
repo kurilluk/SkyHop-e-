@@ -47,7 +47,10 @@ func _on_body_entered(body):
 			#print("Hráč vstúpil na: ", _type)
 		SignalManager.on_box_entered.emit(_type)
 		_active = false  # uz znovy neaktivujes
-		BgmManager.play_box(_type,$Player3D)
+		if _type == BoxManager.actual_type:
+			BgmManager.play_box(_type,$Player3D)
+		else:
+			BgmManager.play_box_false($Player3D)
 		await get_tree().create_timer(3).timeout
 		queue_free()
 		BgmManager.stop_box()

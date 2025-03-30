@@ -38,6 +38,7 @@ func _ready():
 func set_next_color():
 	var id = randi() % 7
 	_next_type = BoxManager.BOX_TYPES.keys()[id]
+	BoxManager.actual_type = _next_type
 	next_color.color = BoxManager.COLORS.values()[id]
 
 func score_count(type):

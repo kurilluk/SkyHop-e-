@@ -31,7 +31,10 @@ func stop_all():
 func stop_box():
 	hit_player.stop()
 	
-
+func play_box_false(player = hit_player):
+	player.stream = NEGATIVE
+	#print(player.stream)
+	player.play()
 	
 func play_box(type, player = hit_player):
 	if type == BoxManager.BOX_TYPES.keys()[0]: #RED
@@ -48,7 +51,7 @@ func play_box(type, player = hit_player):
 		player.stream = BOX_MUSIC[5]
 	elif type == BoxManager.BOX_TYPES.keys()[6]: #PINK:
 		player.stream = BOX_MUSIC[6]
-	print(player.stream)
+	#print(player.stream)
 	player.play()
 	
 

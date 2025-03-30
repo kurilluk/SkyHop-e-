@@ -7,6 +7,8 @@ extends Node
 #const PROJECT_MIN_PROFIT: float = 1.2
 #const PROJECT_MAX_PROFIT: float = 1.8
 
+var actual_type
+
 enum BOX_TYPES {
 	RED = 0,
 	YELLOW = 1,
