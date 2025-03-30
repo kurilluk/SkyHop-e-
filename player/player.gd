@@ -98,9 +98,9 @@ func _physics_process(delta):
 	velocity.z *= MOVEMENT_FRICTION_GROUND if is_on_floor() else MOVEMENT_FRICTION_AIR
 	move_and_slide()
 	
-	var collision = get_last_slide_collision()
-	if collision:
-		print("Collided with: ", collision.get_collider().name)
+	#var collision = get_last_slide_collision()
+	#if collision:
+		#print("Collided with: ", collision.get_collider().name)
 
 	# Jumping, applied next frame.
 	if is_on_floor() and Input.is_action_pressed(&"jump"):
