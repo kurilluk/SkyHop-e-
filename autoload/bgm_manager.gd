@@ -4,26 +4,22 @@ extends Node
 @onready var ambient_player: AudioStreamPlayer = $Ambient_Player
 
 const AMBIENT_LOOP = [
-	preload("res://assets/sounds/ambient/loop/01_Amajor9_LOOP_seamless_MIXED.ogg"),
-	preload("res://assets/sounds/ambient/loop/02_Cmajor9_LOOP_seamless_MIXED.ogg"),
-	preload("res://assets/sounds/ambient/loop/03_G#maj9_LOOP_seamless_MIXED.ogg"),
-	preload("res://assets/sounds/ambient/loop/04_Aminor9_LOOP_seamless_MIXED.ogg")
+preload("res://sound/music/loops/Ambient_background_no_bass_SEAMLESS_01.ogg")
 ]
-const AMBIENT_HIT = [
-	preload("res://assets/sounds/ambient/hit/01_Amajor9_HIT.ogg"),
-	preload("res://assets/sounds/ambient/hit/02_Cmajor9_HIT.ogg"),
-	preload("res://assets/sounds/ambient/hit/03_G#maj9_HIT.ogg"),
-	preload("res://assets/sounds/ambient/hit/04_Aminor9_HIT.ogg")
+const BOX_MUSIC = [
+preload("res://sound/music/box-music/blue-fuel_03.ogg"),
+preload("res://sound/music/box-music/green-relax_03.ogg"),
+preload("res://sound/music/box-music/red-home_03.ogg")
 ]
 
 var _phase : int = -1
 
 func play_next_phase():
 	_phase += 1
-	if _phase > AMBIENT_HIT.size()-1:
+	if _phase > BOX_MUSIC.size()-1:
 		_phase = 0
 	
-	hit_player.stream = AMBIENT_HIT[_phase]
+	hit_player.stream = BOX_MUSIC[_phase]
 	hit_player.play()
 	ambient_player.stream = AMBIENT_LOOP[_phase]
 	ambient_player.play()

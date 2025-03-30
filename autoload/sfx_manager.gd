@@ -3,14 +3,14 @@ extends Node
 @onready var player_polyphonic: AudioStreamPlayer = $Player_Polyphonic
 
 
-const SOUND_BUTTON = preload("res://assets/sounds/sfx/button/BOX_Click_02.wav")
-const SOUND_DRAG = preload("res://assets/sounds/sfx/d&d/Wooden_Click_01.wav")
-const SOUND_DROP = preload("res://assets/sounds/sfx/d&d/Wooden_Click_02.wav")
-const SOUND_LOCK = preload("res://assets/sounds/sfx/lock/Locked_ONE_TURN_02.ogg")
-const SOUND_PROJECT_DONE = preload("res://assets/sounds/sfx/project/Project_finished_01.ogg")
-
-const SOUND_VICTORY = preload("res://assets/sounds/sfx/ending/Orchestral_Victory_sound_03_200BPM.mp3")
-const SOUND_DEFEAT = preload("res://assets/sounds/sfx/ending/end_defeat_orchestral_05_120BPM.ogg")
+#const SOUND_BUTTON = preload("res://assets/sounds/sfx/button/BOX_Click_02.wav")
+#const SOUND_DRAG = preload("res://assets/sounds/sfx/d&d/Wooden_Click_01.wav")
+#const SOUND_DROP = preload("res://assets/sounds/sfx/d&d/Wooden_Click_02.wav")
+#const SOUND_LOCK = preload("res://assets/sounds/sfx/lock/Locked_ONE_TURN_02.ogg")
+#const SOUND_PROJECT_DONE = preload("res://assets/sounds/sfx/project/Project_finished_01.ogg")
+#
+#const SOUND_VICTORY = preload("res://assets/sounds/sfx/ending/Orchestral_Victory_sound_03_200BPM.mp3")
+#const SOUND_DEFEAT = preload("res://assets/sounds/sfx/ending/end_defeat_orchestral_05_120BPM.ogg")
 
 
 func play(sound : AudioStream, volume : float = 0.0):
