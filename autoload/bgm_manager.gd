@@ -7,10 +7,13 @@ const AMBIENT_LOOP = [
 preload("res://sound/music/loops/Ambient_background_no_bass_SEAMLESS_01.ogg")
 ]
 const BOX_MUSIC = [
-preload("res://sound/music/box-music/red-home_03.ogg"),
-preload("res://sound/music/box-music/blue-fuel_03.ogg"),
-preload("res://sound/music/box-music/green-relax_03.ogg"),
-
+	preload("res://sound/music/box-notes/RED_01.ogg"),
+	preload("res://sound/music/box-notes/YELLOW_01.ogg"),
+	preload("res://sound/music/box-notes/GREEN_01.ogg"),
+	preload("res://sound/music/box-notes/AQUA_01.ogg"),
+ 	preload("res://sound/music/box-notes/BLUE_01.ogg"),
+	preload("res://sound/music/box-notes/PURPLE_01.ogg"),
+	preload("res://sound/music/box-notes/PINK_01.ogg"),
 ]
 
 var _phase : int = -1
@@ -35,10 +38,18 @@ func stop_box():
 func play_box(type, player = hit_player):
 	if type == BoxManager.BOX_TYPES.keys()[0]: #RED
 		player.stream = BOX_MUSIC[0]
-	elif type == BoxManager.BOX_TYPES.keys()[2]: #GREEN:
+	elif type == BoxManager.BOX_TYPES.keys()[1]: #YELLOW:
 		player.stream = BOX_MUSIC[1]
-	elif type == BoxManager.BOX_TYPES.keys()[4]: #BLUE
+	elif type == BoxManager.BOX_TYPES.keys()[2]: #GREEN:
 		player.stream = BOX_MUSIC[2]
+	elif type == BoxManager.BOX_TYPES.keys()[3]: #AQUA:
+		player.stream = BOX_MUSIC[3]
+	elif type == BoxManager.BOX_TYPES.keys()[4]: #BLUE
+		player.stream = BOX_MUSIC[4]
+	elif type == BoxManager.BOX_TYPES.keys()[5]: #PURPLE:
+		player.stream = BOX_MUSIC[5]
+	elif type == BoxManager.BOX_TYPES.keys()[6]: #PINK:
+		player.stream = BOX_MUSIC[6]
 	else:
 		player.stream = BOX_MUSIC[2]
 	print(player.stream)
