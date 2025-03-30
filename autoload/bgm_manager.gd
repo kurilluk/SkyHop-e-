@@ -19,6 +19,7 @@ const BOX_MUSIC = [
 	preload("res://sound/music/box-notes-better/PINK_04.ogg"),
 ]
 const NEGATIVE = preload("res://sound/music/positive-negative-sound/NEGATIVE_02.ogg")
+const OUT_OF_FUEL = preload("res://sound/sfx/movement-sounds/OUT_OF_FUEL_01.ogg")
 
 func play_background():
 	ambient_player.stream = AMBIENT_LOOP[0]
@@ -34,6 +35,10 @@ func stop_box():
 func play_box_false(player = hit_player):
 	player.stream = NEGATIVE
 	#print(player.stream)
+	player.play()
+	
+func play_out_of_fuel(player = hit_player):
+	player.stream = OUT_OF_FUEL
 	player.play()
 	
 func play_box(type, player = hit_player):
