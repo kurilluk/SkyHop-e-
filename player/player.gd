@@ -28,7 +28,7 @@ var _selected_block = 6
 
 var _next_type
 var _score = 0
-var _energy = 100
+var _energy = 50
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -139,8 +139,9 @@ func _physics_process(delta):
 		#velocity.y = 5 # 7.5
 	
 	if Input.is_action_pressed(&"crouch"):
-		if _energy <= 0:
+		if _energy <= 0 and %Energy:
 			%Energy.text = "THE END"
+			BgmManager.play_out_of_fuel()
 			return
 		_energy -= delta*2
 		if velocity.y < 0:
@@ -151,6 +152,7 @@ func _physics_process(delta):
 		if %Energy:
 			%Energy.text = str(round(_energy * 100) / 100)
 			#_energy.snapped(0.01))
+		BgmManager.play_jetpack()
 			
 
 
