@@ -14,6 +14,9 @@ const MAX_JETPACK_STRENTCH = 10
 var _mouse_motion = Vector2()
 var _selected_block = 6
 
+@onready var next_color: ColorRect = $NextColor
+@onready var score: Label = $Score
+
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $Head
@@ -23,14 +26,33 @@ var _selected_block = 6
 #@onready var voxel_world = $"../VoxelWorld"
 #@onready var crosshair = $"../PauseMenu/Crosshair"
 
-
+var _next_type
+var _score = 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	SignalManager.on_box_entered.connect(_on_box_interact)
+	set_next_color()
+
+func set_next_color():
+	var id = randi() % 7
+	_next_type = BoxManager.BOX_TYPES.keys()[id]
+	next_color.color = BoxManager.COLORS.values()[id]
+
+func score_count(type):
+	if _next_type == type:
+		_score += 10
+		print("+10")
+	else:
+		_score -= 5
+		print("-5")
 
 func _on_box_interact(type):
 	print(type)
+	score_count(type)
+	print(_score)
+	score.text = str(_score)
+	set_next_color()
 	#BgmManager.play_box(type)
 	#pass
 

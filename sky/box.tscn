@@ -31,3 +31,4 @@ mesh = SubResource("BoxMesh_w7f5x")
 surface_material_override/0 = SubResource("StandardMaterial3D_7sp17")
 
 [node name="Player3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -10.0
