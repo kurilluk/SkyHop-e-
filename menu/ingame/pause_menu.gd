@@ -5,7 +5,7 @@ extends Control
 @onready var crosshair = $Crosshair
 @onready var pause = $Pause
 @onready var options = $Options
-@onready var voxel_world = $"../VoxelWorld"
+@onready var voxel_world = %VoxelWorld
 
 
 func _process(_delta):
@@ -37,5 +37,5 @@ func _on_MainMenu_pressed():
 
 
 func _on_Exit_pressed():
-	voxel_world.clean_up()
+	#voxel_world.clean_up()
 	tree.quit()
