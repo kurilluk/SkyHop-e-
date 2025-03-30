@@ -28,6 +28,7 @@ var _selected_block = 6
 
 var _next_type
 var _score = 0
+var _energy = 100
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -133,15 +134,21 @@ func _physics_process(delta):
 		#print("Collided with: ", collision.get_collider().name)
 
 	# Jumping, applied next frame.
-	if is_on_floor() and Input.is_action_pressed(&"jump"):
-		velocity.y = 5 # 7.5
+	#if is_on_floor() and Input.is_action_pressed(&"jump"):
+		#velocity.y = 5 # 7.5
 	
 	if Input.is_action_pressed(&"crouch"):
+		_energy -= delta*2
 		if velocity.y < 0:
 			velocity.y = 0
 		velocity.y += MOVEMENT_JETPACK_STRENGTH * delta
 		if velocity.y > MAX_JETPACK_STRENTCH:
 			velocity.y = MAX_JETPACK_STRENTCH
+		$Energy.text = str(round(_energy * 100) / 100)
+			#_energy.snapped(0.01))
+		if _energy <= 0:
+			$Energy.text = "THE END"
+			
 
 
 func _input(event):
