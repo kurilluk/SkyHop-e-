@@ -12,6 +12,29 @@ extends Node
 #const SOUND_VICTORY = preload("res://assets/sounds/sfx/ending/Orchestral_Victory_sound_03_200BPM.mp3")
 #const SOUND_DEFEAT = preload("res://assets/sounds/sfx/ending/end_defeat_orchestral_05_120BPM.ogg")
 
+const SFX_JETPACK = preload("res://sound/sfx/movement-sounds/sfx_jetpack.ogg")
+const SFX_JUMP = preload("res://sound/sfx/movement-sounds/sfx_jump.wav")
+
+const SFX_REWARD_RED = [
+	preload("res://sound/sfx/reward-sounds/red-succes-c#-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/red-succes-d-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/red-succes-f#-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/red-succes-a-tone_01.ogg")
+]
+
+const SFX_REWARD_GREEN = [
+	preload("res://sound/sfx/reward-sounds/green-succes-e-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/green-succes-f#-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/green-succes-h-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/green-succes-d-tone_01.ogg")
+]
+
+const SFX_REWARD_BLUE = [
+	preload("res://sound/sfx/reward-sounds/blue-succes-f#-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/blue-succes-g-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/blue-succes-h-tone_01.ogg"),
+	preload("res://sound/sfx/reward-sounds/blue-succes-d-tone_01.ogg")
+]
 
 func play(sound : AudioStream, volume : float = 0.0):
 	if !player_polyphonic.playing : player_polyphonic.play()
