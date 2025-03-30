@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://8i6bu0hjfb3u" path="res://sky/box.tscn" id="1_h66ql"]
 [ext_resource type="PackedScene" uid="uid://1s4asqpay67m" path="res://player/player.tscn" id="2_0ah7g"]
 [ext_resource type="PackedScene" uid="uid://dk8arl1if3lyr" path="res://menu/ingame/pause_menu.tscn" id="2_kkw2q"]
-[ext_resource type="Script" path="res://sky/boxes.gd" id="3_bc1vd"]
+[ext_resource type="Script" uid="uid://kmavj6vpufr5" path="res://sky/boxes.gd" id="3_bc1vd"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kkw2q"]
 
@@ -31,7 +31,7 @@ volumetric_fog_ambient_inject = 1.41
 [node name="Sky" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_0ah7g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 98.3428, 0)
+transform = Transform3D(-0.592098, 0, 0.805866, 0, 1, 0, -0.805866, 0, -0.592098, -2.89062, 98.3428, 1.16756)
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_kkw2q")]
 
