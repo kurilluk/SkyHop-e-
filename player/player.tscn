@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://1s4asqpay67m"]
+[gd_scene load_steps=9 format=3 uid="uid://1s4asqpay67m"]
 
 [ext_resource type="Script" uid="uid://dp7wvhg4tafqi" path="res://player/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dhmb4d4sdsfff" path="res://world/textures/texture_sheet_colors.png" id="2_waeq6"]
@@ -18,6 +18,12 @@ region = Rect2(0, 0, 64, 64)
 margin = 0.0
 height = 1.0
 radius = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkbax"]
+bg_color = Color(0.254902, 0.572549, 0.788235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1dw6"]
+bg_color = Color(0.788235, 0.72549, 0.254902, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_mask = 14
@@ -73,28 +79,49 @@ size_flags_vertical = 8
 texture = SubResource("2")
 expand_mode = 1
 
-[node name="Score" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 39.0
-offset_right = 20.0
-offset_bottom = 62.0
+offset_left = -59.5
+offset_top = 31.0
+offset_right = 59.5
+offset_bottom = 71.0
 grow_horizontal = 2
+
+[node name="Score_label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "SCORE:"
+
+[node name="Score" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "00"
-horizontal_alignment = 1
 
-[node name="Energy" type="Label" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 84.0
-offset_right = 20.0
-offset_bottom = 107.0
+offset_left = -64.0
+offset_top = 68.0
+offset_right = 64.0
+offset_bottom = 108.0
 grow_horizontal = 2
+
+[node name="energy" type="Label" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ENERGY:"
+
+[node name="Energy" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "100"
 
@@ -104,3 +131,90 @@ collision_mask = 14
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_rkbax")
+
+[node name="MarginContainer" type="MarginContainer" parent="Area3D/CollisionShape3D2"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Area3D/CollisionShape3D2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 12
+
+[node name="Hydration" type="HBoxContainer" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HydrationLabel" type="Label" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/Hydration"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Hydration"
+
+[node name="HydrationBar" type="ProgressBar" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/Hydration"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 32)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_rkbax")
+step = 1.0
+value = 50.0
+
+[node name="Blader" type="HBoxContainer" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BladerLabel" type="Label" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/Blader"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+text = "Bladder"
+
+[node name="BladerBar" type="ProgressBar" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/Blader"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 32)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_g1dw6")
+step = 1.0
+
+[node name="MoveEffort" type="HBoxContainer" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MoveEffortLabel" type="Label" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/MoveEffort"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+text = "Move Effort"
+
+[node name="MoveEffortBar" type="ProgressBar" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/MoveEffort"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 32)
+layout_mode = 2
+max_value = 1.0
+step = 1.0
+value = 1.0
+
+[node name="DayPart" type="HBoxContainer" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DayPartLabel" type="Label" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/DayPart"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+text = "Day Part"
+
+[node name="DayPartBar" type="ProgressBar" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer/DayPart"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 32)
+layout_mode = 2
+max_value = 4.0
+step = 1.0
+
+[node name="Button" type="Button" parent="Area3D/CollisionShape3D2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+text = "START >"

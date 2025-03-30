@@ -15,7 +15,7 @@ var _mouse_motion = Vector2()
 var _selected_block = 6
 
 @onready var next_color: ColorRect = $NextColor
-@onready var score: Label = $Score
+@onready var score: Label = %Score
 
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -139,16 +139,17 @@ func _physics_process(delta):
 		#velocity.y = 5 # 7.5
 	
 	if Input.is_action_pressed(&"crouch"):
+		if _energy <= 0:
+			%Energy.text = "THE END"
+			return
 		_energy -= delta*2
 		if velocity.y < 0:
 			velocity.y = 0
 		velocity.y += MOVEMENT_JETPACK_STRENGTH * delta
 		if velocity.y > MAX_JETPACK_STRENTCH:
 			velocity.y = MAX_JETPACK_STRENTCH
-		$Energy.text = str(round(_energy * 100) / 100)
+		%Energy.text = str(round(_energy * 100) / 100)
 			#_energy.snapped(0.01))
-		if _energy <= 0:
-			$Energy.text = "THE END"
 			
 
 
