@@ -4,6 +4,7 @@ extends Node
 @onready var ambient_player: AudioStreamPlayer = $Ambient_Player
 
 const AMBIENT_LOOP = [
+preload("res://sound/music/loops/Ambient_background_no_bass_SEAMLESS_01.ogg"),
 preload("res://sound/music/box-music/red-home_03.ogg"),
 preload("res://sound/music/box-music/green-relax_03.ogg"),
 preload("res://sound/music/box-music/blue-fuel_03.ogg")
@@ -18,7 +19,7 @@ const BOX_MUSIC = [
 	preload("res://sound/music/box-notes-better/PURPLE_04.ogg"),
 	preload("res://sound/music/box-notes-better/PINK_04.ogg"),
 ]
-const NEGATIVE = preload("res://sound/music/positive-negative-sound/NEGATIVE_02.ogg")
+const NEGATIVE = preload("res://sound/music/positive-negative-sound/NEGATIVE_01.ogg")
 const OUT_OF_FUEL = preload("res://sound/sfx/movement-sounds/OUT_OF_FUEL_01.ogg")
 const JETPACK = preload("res://sound/sfx/movement-sounds/sfx_jetpack.ogg")
 
@@ -27,8 +28,15 @@ func play_background():
 	ambient_player.play()
 	
 func play_jetpack(player = hit_player):
-	player.stream = JETPACK
-	player.play()
+	if not player.playing:
+		player.stream = JETPACK
+		player.play()
+		print("Is playing:", player.playing)
+		#player.playing = true
+		
+func stop_jetpack(player = hit_player):
+	player.stop()
+	#player.playing = false
 
 func stop_all():
 	hit_player.stop()

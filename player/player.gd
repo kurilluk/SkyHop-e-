@@ -13,9 +13,14 @@ const MAX_JETPACK_STRENTCH = 10
 
 var _mouse_motion = Vector2()
 var _selected_block = 6
+var current_interaction_type
+var is_ready_to_interact = false
+
+var last_visited_box
 
 @onready var next_color: ColorRect = $NextColor
 @onready var score: Label = %Score
+@onready var energy: Label = %Energy
 
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -50,20 +55,25 @@ func score_count(type):
 		_score -= 5
 		print("-5")
 
-func _on_box_interact(type):
-	#print(type)
-	score_count(type)
-	print(_score)
-	score.text = str(_score)
-	set_next_color()
-	#BgmManager.play_box(type)
-	#pass
-
+func _on_box_interact(type, box):
+	current_interaction_type = type
+	is_ready_to_interact = true
+	last_visited_box = box
+	
+	##print(type)
+	#score_count(type)
+	#print(_score)
+	#score.text = str(_score)
+	#set_next_color()
+	##BgmManager.play_box(type)
+	##pass
+	
 func _process(_delta):
 	# Mouse movement.
-	_mouse_motion.y = clamp(_mouse_motion.y, -1560, 1560)
+	#_mouse_motion.y = clamp(_mouse_motion.y, -1560, 1560)
 	transform.basis = Basis.from_euler(Vector3(0, _mouse_motion.x * -0.001, 0))
 	head.transform.basis = Basis.from_euler(Vector3(_mouse_motion.y * -0.001, 0, 0))
+	#print(head.transform.basis)
 
 	# Block selection.
 	#var ray_position = raycast.get_collision_point()
@@ -120,9 +130,9 @@ func _physics_process(delta):
 		#movement *= MOVEMENT_SPEED_CROUCH_MODIFIER
 
 	# Gravity.
-	velocity.y -= gravity/2 * delta
-	if velocity.y < -10:
-		velocity.y = -10
+	velocity.y -= gravity/4 * delta
+	if velocity.y < -6:
+		velocity.y = -6
 
 	velocity += Vector3(movement.x, 0, movement.z)
 	# Apply horizontal friction.
@@ -139,8 +149,8 @@ func _physics_process(delta):
 		#velocity.y = 5 # 7.5
 	
 	if Input.is_action_pressed(&"crouch"):
-		if _energy <= 0 and %Energy:
-			%Energy.text = "THE END"
+		if _energy <= 0 and energy:
+			energy.text = "THE END"
 			BgmManager.play_out_of_fuel()
 			return
 		_energy -= delta*2
@@ -149,10 +159,13 @@ func _physics_process(delta):
 		velocity.y += MOVEMENT_JETPACK_STRENGTH * delta
 		if velocity.y > MAX_JETPACK_STRENTCH:
 			velocity.y = MAX_JETPACK_STRENTCH
-		if %Energy:
-			%Energy.text = str(round(_energy * 100) / 100)
+		if energy:
+			energy.text = str(round(_energy * 100) / 100)
 			#_energy.snapped(0.01))
-		BgmManager.play_jetpack()
+			BgmManager.play_jetpack()
+	if Input.is_action_just_released(&"crouch"):
+		BgmManager.stop_jetpack()
+		pass
 			
 
 
@@ -160,6 +173,22 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			_mouse_motion += event.relative
+			
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if is_ready_to_interact:
+			print(is_ready_to_interact)
+			score_count(current_interaction_type)
+			
+			#if current_interaction_type == BoxManager.actual_type:
+				#BgmManager.play_box(current_interaction_type,last_visited_box)
+			#else:
+				#BgmManager.play_box_false(last_visited_box)
+			#print(BoxManager.actual_type + " ----> " + current_interaction_type)
+			
+			print(_score)
+			score.text = str(_score)
+			set_next_color()
+			is_ready_to_interact = false  # reset po kliknutí
 
 
 #func chunk_pos():

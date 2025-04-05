@@ -10,6 +10,7 @@ const RANDOM_BLOCK_PROBABILITY = 0.025
 func _ready() -> void:
 	player.position = Vector3(SPACE.x/2, SPACE.y, SPACE.z/2)
 	generate_boxes()
+	BgmManager.play_background()
 
 func generate_boxes():
 	var random_data = {}

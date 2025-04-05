@@ -1,7 +1,9 @@
 extends Area3D
+class_name Box
 
 #@onready 
 #@onready var _material = box_mesh.get_surface_override_material(0)
+@onready var player_3d: AudioStreamPlayer3D = $Player3D
 
 var _type = "Jozko"
 var _active
@@ -35,6 +37,16 @@ func set_color(type: int):
 func count_down():
 	pass
 
+func play_sound():
+	if _type == BoxManager.actual_type:
+		BgmManager.play_box(_type,player_3d)
+	else:
+		BgmManager.play_box_false(player_3d)
+		print(BoxManager.actual_type + " ----> " + _type)
+	await get_tree().create_timer(3).timeout
+	queue_free()
+	BgmManager.stop_box()
+
 func _on_body_entered(body):
 	#print(body)
 	if not _active:
@@ -46,12 +58,12 @@ func _on_body_entered(body):
 			#print("on the floor")
 			#print("Hráč vstúpil na: ", _type)
 		_active = false  # uz znovy neaktivujes
-		if _type == BoxManager.actual_type:
-			BgmManager.play_box(_type,$Player3D)
-		else:
-			BgmManager.play_box_false($Player3D)
-			print(BoxManager.actual_type + " ----> " + _type)
-		SignalManager.on_box_entered.emit(_type)
+		#if _type == BoxManager.actual_type:
+			#BgmManager.play_box(_type,player_3d)
+		#else:
+			#BgmManager.play_box_false(player_3d)
+			#print(BoxManager.actual_type + " ----> " + _type)
+		SignalManager.on_box_entered.emit(_type, self)
 		await get_tree().create_timer(3).timeout
 		queue_free()
 		BgmManager.stop_box()
